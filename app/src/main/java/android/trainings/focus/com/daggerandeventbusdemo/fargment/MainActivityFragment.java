@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 public class MainActivityFragment extends BaseFragment {
     private static final String CLASS_NAME = MainActivityFragment.class.getName();
 
+    public MainActivityFragment() {
+        super();
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
