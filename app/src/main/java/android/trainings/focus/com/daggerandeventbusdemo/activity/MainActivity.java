@@ -8,20 +8,27 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.trainings.focus.com.daggerandeventbusdemo.DaggerEventBusDemo;
 import android.trainings.focus.com.daggerandeventbusdemo.R;
+import android.trainings.focus.com.daggerandeventbusdemo.model.Employee;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import javax.inject.Inject;
+
 public class MainActivity extends BaseActivity {
     private static final String CLASS_NAME = MainActivity.class.getName();
 
+    @Inject
+    Employee employee;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(CLASS_NAME, "inside onCreate ");
         setContentView(R.layout.activity_main);
+        ((DaggerEventBusDemo) getApplication()).getComponent().inject(this);
     }
 
     @Override
@@ -34,7 +41,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(CLASS_NAME, "inside onResume ");
+        Log.d(CLASS_NAME, "inside onResume "+employee.getName());
 
     }
 

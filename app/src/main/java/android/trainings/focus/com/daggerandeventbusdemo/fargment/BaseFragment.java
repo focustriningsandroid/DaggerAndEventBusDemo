@@ -13,6 +13,11 @@ public abstract class BaseFragment extends Fragment {
 
     private static final String CLASS_NAME = BaseFragment.class.getName();
 
+
+    public BaseFragment() {
+        Log.d(CLASS_NAME, "inside default constructor ");
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -23,6 +28,7 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(CLASS_NAME, "inside onCreate ");
+        setRetainInstance(true);
     }
 
     @Nullable
