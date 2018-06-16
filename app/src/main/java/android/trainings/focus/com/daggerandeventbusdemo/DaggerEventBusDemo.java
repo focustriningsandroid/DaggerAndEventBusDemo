@@ -17,7 +17,7 @@ public class DaggerEventBusDemo extends Application {
 
     private ApiComponent createcomponent() {
 
-        return DaggerApiComponent.builder().appModule(new AppModule(this)).employeeModule(new EmployeeModule()).build();
+        return DaggerApiComponent.builder().appModule(new AppModule(this)).employeeModule(new EmployeeModule("Michael")).build();
     }
 
     public ApiComponent getComponent() {

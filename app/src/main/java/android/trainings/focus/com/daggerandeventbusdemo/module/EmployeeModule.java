@@ -10,8 +10,20 @@ import dagger.Provides;
 @Module
 public class EmployeeModule {
 
+
+    private String name;
+
+    public EmployeeModule(String name) {
+        this.name = name;
+    }
+
     @Provides
-    public Employee provideEmployee(String name) {
+    public String provideEmployeeName(){
+        return this.name;
+    }
+
+    @Provides
+    public Employee provideEmployee() {
         return new Employee(name);
     }
 }

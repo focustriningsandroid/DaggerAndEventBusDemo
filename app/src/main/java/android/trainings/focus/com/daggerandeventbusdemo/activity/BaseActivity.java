@@ -14,6 +14,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.greenrobot.eventbus.EventBus;
+
+import javax.inject.Inject;
+
 public abstract class BaseActivity extends Activity {
     private static final String CLASS_NAME = BaseActivity.class.getName();
 

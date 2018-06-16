@@ -16,10 +16,19 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
     private static final String CLASS_NAME = MainActivity.class.getName();
+
+    @Inject
+    EventBus mBus;
+    public Employee getEmployee() {
+        return employee;
+    }
 
     @Inject
     Employee employee;
@@ -35,20 +44,33 @@ public class MainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         Log.d(CLASS_NAME, "inside onStart ");
+        if(null != mBus && !mBus.isRegistered(this)){
+            mBus.register(this);
+        }
 
     }
 
+
+    @Subscribe
+    public void getMessage(String name){
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
         Log.d(CLASS_NAME, "inside onResume "+employee.getName());
-
+        if(null != mBus) {
+            mBus.post(employee);
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Log.d(CLASS_NAME, "inside onPause ");
+        if(null != mBus){
+            mBus.unregister(this);
+        }
 
     }
 

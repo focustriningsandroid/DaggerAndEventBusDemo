@@ -5,10 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.trainings.focus.com.daggerandeventbusdemo.R;
+import android.trainings.focus.com.daggerandeventbusdemo.model.Employee;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -30,6 +34,7 @@ public class MainActivityFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(CLASS_NAME, "inside onCreate ");
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -83,4 +88,9 @@ public class MainActivityFragment extends BaseFragment {
         Log.d(CLASS_NAME, "inside onDestroy ");
     }
 
+    @Subscribe
+    public void getEmployee(Employee employee){
+        employee.setName("Constantine");
+        Log.d(CLASS_NAME, "inside getEmployee name is: "+employee.getName());
+    }
 }

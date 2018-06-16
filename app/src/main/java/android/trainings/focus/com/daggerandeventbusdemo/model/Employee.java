@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 public class Employee {
 
-    private String name = "";
+    private String name = "mike";
 
     public Employee(String name) {
         this.name = name;
