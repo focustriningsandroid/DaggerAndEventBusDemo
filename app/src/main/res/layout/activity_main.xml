@@ -7,7 +7,7 @@
     tools:context=".activity.MainActivity">
 
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_second" />
 
 
 </android.support.design.widget.CoordinatorLayout>

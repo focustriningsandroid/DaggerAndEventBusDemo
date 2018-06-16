@@ -1,20 +1,26 @@
 package android.trainings.focus.com.daggerandeventbusdemo.fargment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.trainings.focus.com.daggerandeventbusdemo.R;
+import android.trainings.focus.com.daggerandeventbusdemo.activity.SecondActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends BaseFragment {
     private static final String CLASS_NAME = MainActivityFragment.class.getName();
+
+    private TextView textView;
+    private View view;
 
     @Override
     public void onAttach(Context context) {
@@ -33,7 +39,9 @@ public class MainActivityFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         Log.d(CLASS_NAME, "inside onCreateView ");
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        view = inflater.inflate(R.layout.fragment_main, container, false);
+        textView = (TextView) getActivity().findViewById(R.id.text);
+        return view;
     }
 
 
@@ -41,6 +49,12 @@ public class MainActivityFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.d(CLASS_NAME, "inside onActivityCreated ");
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SecondActivity.class));
+            }
+        });
     }
 
     @Override
